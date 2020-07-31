@@ -28,6 +28,8 @@ class CustomUserManager(BaseUserManager):
         user.set_password(raw_password=password)
         user.save(using=self._db)
 
+        return user
+
     def create_superuser(self, email, first_name, last_name, password):
         """
         Create a super user
@@ -46,6 +48,7 @@ class CustomUserManager(BaseUserManager):
 
         user.is_admin = True
         user.is_superuser = True
+        user.is_staff = True
 
         user.save(using=self._db)
 
@@ -60,6 +63,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
