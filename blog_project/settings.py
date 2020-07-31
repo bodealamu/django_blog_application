@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from .production_settings import SECRET_KEY
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,11 +21,13 @@ print(BASE_DIR)
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ak90c05eu^b%)r$cv&i^vh0r4j+a71@!wtfn5=k^m+3z=xi-&t'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# change to False for deployment
 DEBUG = True
 
+# allowed domain names for the deployed application
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
