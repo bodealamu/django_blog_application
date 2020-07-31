@@ -56,14 +56,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """Model representation for the custom user"""
     first_name = models.CharField(max_length=30, verbose_name="First name")
     last_name = models.CharField(max_length=30, verbose_name='Last name')
-    email = models.EmailField(max_length=50, verbose_name='Email Address')
+    email = models.EmailField(max_length=50, verbose_name='Email Address', unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
